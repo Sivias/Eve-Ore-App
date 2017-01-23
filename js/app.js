@@ -1,70 +1,6 @@
-//    // Ore
-//function ore(m3, security) {
-//    this.m3 = m3;
-//    this.security = security;
-//}
-//
-//    // Security
-//var nullSec = 'Null Security';
-//var lowSec = 'Low Security';
-//var highSec = 'High Security';
-//var anomoly = 'Anomoly';
-//
-//    // Pyroxeres
-//var pyroxeres = new ore(0.3, highSec);
-//var viscousPyroxeres = new ore(0.3, highSec);
-//var solidPyroxeres = new ore(0.3, highSec);
-//
-//    // Kernite
-//var kernite = new ore(1.2, lowSec);
-//var fieryKernite = new ore(1.2, lowSec);
-//var luminousKernite = new ore(1.2, lowSec)
-//
-//    // Veldspar
-//var veldspar = new ore(0.1, highSec);
-//var denseVeldspar = new ore(0.1, highSec);
-//var concentratedVeldspar = new ore(0.1, highSec);
-//
-//    // Scordite
-//var scordite = new ore(0.15, highSec);
-//var massiveScordite = new ore(0.15, highSec);
-//var condensedScordite = new ore(0.15, highSec);
-//
-//    // Omber
-//var omber = new ore(0.6, anomoly);
-//var goldenOmber = new ore(0.6, anomoly);
-//var silverOmber = new ore(0.6, anomoly);
-//
-//    // Hemmorphite
-//var radiantHemorphite = new ore(3, anomoly);
-//var vividHemorphite = new ore(3, anomoly);
-//
-//    // Hedbergite
-//var hedbergite = new ore(3, anomoly);
-//
-//
-//    // Ships
-//function ship(oreHold, miningRate) {
-//    this.oreHold = oreHold;
-//    this.miningRate = miningRate;
-//}
-//
-//var venture = new ship(5000, null);
-//var covetor = new ship(7000, 13.6);
-//var retriever = new ship(23100, 176.4);
-//
-//var estIsk = 42.7
-//
-//function oreHoldValue(oreM3, shipOreHold) {
-//    (((1 / oreM3) * estIsk) * shipOreHold);
-//};
-//
-//console.log(oreHoldValue(pyroxeres, venture));
-//console.log(pyroxeres);
-
 $(document).ready(function(){
     var ores = {}
-
+        // Ore Value Update
     $('.js-ore-form').on('submit', function(e){
         e.preventDefault();
         var oreName = $('.js-ore-name').val();
@@ -79,5 +15,72 @@ $(document).ready(function(){
         console.log(ores);
     }
 
+        // Ore
+    function Ore(m3, security, estIsk) {
+        this.m3 = m3;
+        this.security = security;
+        this.estIsk = estIsk;
+    }
 
+        // Security
+    var nullSec = 'Null Security';
+    var lowSec = 'Low Security';
+    var highSec = 'High Security';
+    var anomoly = 'Anomoly';
+
+        // Pyroxeres
+    var pyroxeres = new Ore(0.3, highSec, null);
+    var viscousPyroxeres = new Ore(0.3, highSec, null);
+    var solidPyroxeres = new Ore(0.3, highSec, null);
+
+        // Kernite
+    var kernite = new Ore(1.2, lowSec, null);
+    var fieryKernite = new Ore(1.2, lowSec, null);
+    var luminousKernite = new Ore(1.2, lowSec, null)
+
+        // Veldspar
+    var veldspar = new Ore(0.1, highSec, null);
+    var denseVeldspar = new Ore(0.1, highSec, null);
+    var concentratedVeldspar = new Ore(0.1, highSec, null);
+
+        // Scordite
+    var scordite = new Ore(0.15, highSec, null);
+    var massiveScordite = new Ore(0.15, highSec, null);
+    var condensedScordite = new Ore(0.15, highSec, null);
+
+        // Omber
+    var omber = new Ore(0.6, anomoly, null);
+    var goldenOmber = new Ore(0.6, anomoly, null);
+    var silverOmber = new Ore(0.6, anomoly, null);
+
+        // Hemmorphite
+    var radiantHemorphite = new Ore(3, anomoly, null);
+    var vividHemorphite = new Ore(3, anomoly, null);
+
+        // Hedbergite
+    var hedbergite = new Ore(3, anomoly, null);
+
+        // Ships
+    function Ship(oreHold, miningRate) {
+        this.oreHold = oreHold;
+        this.miningRate = miningRate;
+    }
+
+    var venture = new Ship(5000, null);
+    var covetor = new Ship(7000, null);
+    var retriever = new Ship(23100, null);
+
+    // Needs work - returns 'undefined'
+    var estIsk = 42;
+
+    function oreHoldValue(oreM3, estIsk, shipOreHold) {
+        if(estIsk) {
+            return (((1 / oreM3) * estIsk) * shipOreHold);
+        };
+    };
+
+    console.log(oreHoldValue(pyroxeres.m3, estIsk, venture.oreHold));
+
+    // console.log(pyroxeres.m3);
+    // console.log(venture.oreHold);
 });
