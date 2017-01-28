@@ -3,10 +3,13 @@ $(document).ready(function(){
         // Ore Value Update
     $('.js-ore-form').on('submit', function(e){
         e.preventDefault();
-        var oreName = $('.js-ore-name').val();
+        var oreName = $('.js-ore-name').find(':selected').data().name;
         var oreVal = $('.js-ore-input').val();
+        var ore = ores[oreName] || {};
 
-        ores[oreName] = oreVal;
+        ore.estIsk = oreVal;
+
+        ores[oreName] = ore;
 
         refreshOreList();
     })
@@ -22,11 +25,42 @@ $(document).ready(function(){
         this.estIsk = estIsk;
     }
 
-        // Security
-    var nullSec = 'Null Security';
-    var lowSec = 'Low Security';
-    var highSec = 'High Security';
-    var anomoly = 'Anomoly';
+    var oreNames = [
+        'pyroxeres', 'viscousPyroxeres', 'solidPyroxeres',
+        'kernite', 'fieryKernite', 'luminousKernite',
+        'veldspar', 'denseVeldspar', 'concentratedVeldspar',
+        'scordite', 'massiveScordite', 'condensedScordite',
+        'omber', 'goldenOmber', 'silverOmber',
+        'radiantHemorphite', 'vividHemorphite',
+        'hedbergite'
+    ]
+
+            // Security
+        var nullSec = 'Null Security';
+        var lowSec = 'Low Security';
+        var highSec = 'High Security';
+        var anomoly = 'Anomoly';
+
+
+    for(var i = 0; i < oreNames.length; i++){
+        console.log('-- Ores pre loop: ', ores);
+        var oreName = oreNames[i].toLowerCase();
+        var oreM3, oreSec;
+
+        if(oreName.indexOf('pyro') >= 0){
+            ores[oreName] = new Ore(0.3, highSec);
+        } else if(oreName.indexOf('kern') >= 0){
+            ores[oreName] = new Ore(1.2, lowSec);
+        } else if(oreName.indexOf('veld') >= 0){
+            ores[oreName] = new Ore(0.1, highSec);
+        } else if(oreName.indexOf('scord') >= 0){
+            ores[oreName] = new Ore(0.15, highSec);
+        } else if(oreName.indexOf('omber') >= 0){
+            ores[oreName] = new Ore(0.6, anomoly);
+        }
+
+        console.log('Ores post loop: ', ores);
+    }
 
         // Pyroxeres
     var pyroxeres = new Ore(0.3, highSec, null);
