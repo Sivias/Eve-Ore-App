@@ -8,8 +8,9 @@ $(document).ready(function(){
         var ore = ores[oreName] || {};
 
         ore.estIsk = oreVal;
-
         ores[oreName] = ore;
+
+        $('#ore-1').val(oreVal);
 
         refreshOreList();
     })
@@ -25,6 +26,18 @@ $(document).ready(function(){
         this.estIsk = estIsk;
     }
 
+        // Ships
+    var venture = new Ship(5000, null);
+    var covetor = new Ship(7000, null);
+    var retriever = new Ship(23100, null);
+
+        // Security
+    var nullSec = 'Null Security';
+    var lowSec = 'Low Security';
+    var highSec = 'High Security';
+    var anomoly = 'Anomoly';
+
+        // Ore types
     var oreNames = [
         'pyroxeres', 'viscousPyroxeres', 'solidPyroxeres',
         'kernite', 'fieryKernite', 'luminousKernite',
@@ -35,12 +48,8 @@ $(document).ready(function(){
         'hedbergite'
     ]
 
-            // Security
-        var nullSec = 'Null Security';
-        var lowSec = 'Low Security';
-        var highSec = 'High Security';
-        var anomoly = 'Anomoly';
-
+        // Ore loop to assign Ore values to the Ore Types array that
+        // can be referenced on the HTML page (data-name="")
 
     for(var i = 0; i < oreNames.length; i++){
         console.log('-- Ores pre loop: ', ores);
@@ -62,59 +71,54 @@ $(document).ready(function(){
         console.log('Ores post loop: ', ores);
     }
 
-        // Pyroxeres
-    var pyroxeres = new Ore(0.3, highSec, null);
-    var viscousPyroxeres = new Ore(0.3, highSec, null);
-    var solidPyroxeres = new Ore(0.3, highSec, null);
 
-        // Kernite
-    var kernite = new Ore(1.2, lowSec, null);
-    var fieryKernite = new Ore(1.2, lowSec, null);
-    var luminousKernite = new Ore(1.2, lowSec, null)
-
-        // Veldspar
-    var veldspar = new Ore(0.1, highSec, null);
-    var denseVeldspar = new Ore(0.1, highSec, null);
-    var concentratedVeldspar = new Ore(0.1, highSec, null);
-
-        // Scordite
-    var scordite = new Ore(0.15, highSec, null);
-    var massiveScordite = new Ore(0.15, highSec, null);
-    var condensedScordite = new Ore(0.15, highSec, null);
-
-        // Omber
-    var omber = new Ore(0.6, anomoly, null);
-    var goldenOmber = new Ore(0.6, anomoly, null);
-    var silverOmber = new Ore(0.6, anomoly, null);
-
-        // Hemmorphite
-    var radiantHemorphite = new Ore(3, anomoly, null);
-    var vividHemorphite = new Ore(3, anomoly, null);
-
-        // Hedbergite
-    var hedbergite = new Ore(3, anomoly, null);
-
-        // Ships
-    function Ship(oreHold, miningRate) {
+        function Ship(oreHold, miningRate) {
         this.oreHold = oreHold;
         this.miningRate = miningRate;
     }
 
-    var venture = new Ship(5000, null);
-    var covetor = new Ship(7000, null);
-    var retriever = new Ship(23100, null);
+        // Update ore values
 
-    // Needs work - returns 'undefined'
-    var estIsk = 42;
 
+        // Calculate max hold value per ship type
     function oreHoldValue(oreM3, estIsk, shipOreHold) {
         if(estIsk) {
             return (((1 / oreM3) * estIsk) * shipOreHold);
         };
     };
 
-    console.log(oreHoldValue(pyroxeres.m3, estIsk, venture.oreHold));
+    refreshOreList();
 
-    // console.log(pyroxeres.m3);
-    // console.log(venture.oreHold);
+    //     // Pyroxeres
+    // var pyroxeres = new Ore(0.3, highSec, null);
+    // var viscousPyroxeres = new Ore(0.3, highSec, null);
+    // var solidPyroxeres = new Ore(0.3, highSec, null);
+
+    //    // Kernite
+    // var kernite = new Ore(1.2, lowSec, null);
+    // var fieryKernite = new Ore(1.2, lowSec, null);
+    // var luminousKernite = new Ore(1.2, lowSec, null)
+
+    //     // Veldspar
+    // var veldspar = new Ore(0.1, highSec, null);
+    // var denseVeldspar = new Ore(0.1, highSec, null);
+    // var concentratedVeldspar = new Ore(0.1, highSec, null);
+
+    //     // Scordite
+    // var scordite = new Ore(0.15, highSec, null);
+    // var massiveScordite = new Ore(0.15, highSec, null);
+    // var condensedScordite = new Ore(0.15, highSec, null);
+
+    //     // Omber
+    // var omber = new Ore(0.6, anomoly, null);
+    // var goldenOmber = new Ore(0.6, anomoly, null);
+    // var silverOmber = new Ore(0.6, anomoly, null);
+
+    //     // Hemmorphite
+    // var radiantHemorphite = new Ore(3, anomoly, null);
+    // var vividHemorphite = new Ore(3, anomoly, null);
+
+    //     // Hedbergite
+    // var hedbergite = new Ore(3, anomoly, null);
+
 });
