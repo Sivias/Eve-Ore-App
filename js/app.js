@@ -24,40 +24,39 @@ $(document).ready(function(){
         ore.displayName = oreName;
         ores[oreName] = ore;
 
-        // Ore
-        function Ore(m3, security, displayName, estIsk) {
-            this.m3 = m3;
-            this.security = security;
-            this.displayName = displayName;
-            this.estIsk = estIsk;
-        };
-
              // Put eskIsk value and venture value into the list
         if (this.oreName === this.oreNames){
              $('#' + oreName).text(oreVal + ' | Venture Value: ' + oreHoldValue(ore.m3, oreVal, venture.oreHold));
         };
 
-            // Assign default values to ore types
-        for(var i = 0; i < oreNames.length; i++){
-        
-            oreName = oreNames[i].toLowerCase();
-            var oreM3, oreSec;
-
-            if(oreName.indexOf('pyro') >= 0){
-            ores[oreName] = new Ore(0.3, highSec);
-            } else if(oreName.indexOf('kern') >= 0){
-                ores[oreName] = new Ore(1.2, lowSec);
-            } else if(oreName.indexOf('veld') >= 0){
-                ores[oreName] = new Ore(0.1, highSec);
-            } else if(oreName.indexOf('scord') >= 0){
-                ores[oreName] = new Ore(0.15, highSec);
-            } else if(oreName.indexOf('omber') >= 0){
-                ores[oreName] = new Ore(0.6, anomoly);
-            }
-        };
-
         refreshOreList();
     });
+
+        // Ore
+    function Ore(m3, security, displayName, estIsk) {
+        this.m3 = m3;
+        this.security = security;
+        this.displayName = displayName;
+        this.estIsk = estIsk;
+    };
+        // Assign default values to ore types
+    for(var i = 0; i < oreNames.length; i++){
+        
+        oreName = oreNames[i].toLowerCase();
+        var oreM3, oreSec;
+
+        if(oreName.indexOf('pyro') >= 0){
+            ores[oreName] = new Ore(0.3, highSec);
+        } else if(oreName.indexOf('kern') >= 0){
+            ores[oreName] = new Ore(1.2, lowSec);
+        } else if(oreName.indexOf('veld') >= 0){
+            ores[oreName] = new Ore(0.1, highSec);
+        } else if(oreName.indexOf('scord') >= 0){
+            ores[oreName] = new Ore(0.15, highSec);
+        } else if(oreName.indexOf('omber') >= 0){
+            ores[oreName] = new Ore(0.6, anomoly);
+        }
+    };
 
     var refreshOreList = function(){
         console.log(ores);
