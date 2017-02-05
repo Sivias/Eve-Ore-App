@@ -14,7 +14,6 @@ $(document).ready(function(){
     var ores = {}
 
         // Update ore value based on user submission
-      
     $('.js-ore-form').on('submit', function(e){
         e.preventDefault();
         var oreName = $('.js-ore-name').find(':selected').data().name;
@@ -65,14 +64,15 @@ $(document).ready(function(){
     };
 
         // Ships
-    function Ship(oreHold, miningRate) {
+    function Ship(shipName, oreHold, miningRate) {
+        this.shipName = shipName
         this.oreHold = oreHold;
         this.miningRate = miningRate;
     };
 
-    var venture = new Ship(5000, null);
-    var covetor = new Ship(7000, null);
-    var retriever = new Ship(23100, null);
+    var venture = new Ship('Venture', 5000, null);
+    var covetor = new Ship('Covetor', 7000, null);
+    var retriever = new Ship('Retriever', 23100, null);
 
         // Calculate max hold value per ship type
     function oreHoldValue(oreM3, estIsk, shipOreHold) {
