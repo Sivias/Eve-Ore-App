@@ -25,20 +25,18 @@ $(document).ready(function(){
         ore.displayName = oreName;
         ores[oreName] = ore;
 
-            // Ore
+        // Ore
         function Ore(m3, security, displayName, estIsk) {
             this.m3 = m3;
             this.security = security;
             this.displayName = displayName;
             this.estIsk = estIsk;
-            
         };
 
              // Put eskIsk value and venture value into the list
         if (this.oreName === this.oreNames){
              $('#' + oreName).text(oreVal + ' | Venture Value: ' + oreHoldValue(ore.m3, oreVal, venture.oreHold));
         };
-        
 
             // Assign default values to ore types
         for(var i = 0; i < oreNames.length; i++){
