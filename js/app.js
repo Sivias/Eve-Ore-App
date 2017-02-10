@@ -85,8 +85,7 @@ $(document).ready(function(){
              // Put eskIsk value and venture value into the list
         if (this.oreName === this.oreNames){
             $('#' + oreName).text(oreVal);
-             $('#' + oreName + ' .ventureValue').text(' Test');
-             //$('#' + oreName + '>.ventureValue').text('Venture Value: ' + oreHoldValue(ore.m3, oreVal, venture.oreHold));
+            $('#' + oreName).siblings('.ventureValue').text(' Venture Value: ' + oreHoldValue(ore.m3, oreVal, venture.oreHold));
         };
 
         refreshOreList();
