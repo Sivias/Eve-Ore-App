@@ -1,6 +1,14 @@
 $(document).ready(function(){
 
-        // Ore types
+            // Variables
+            // Security
+    var nullSec = 'Null Security';
+    var lowSec = 'Low Security';
+    var highSec = 'High Security';
+    var anomoly = 'Anomoly';
+
+            // Ore types
+    var ores = {}
     var oreNames = [
         'pyroxeres', 'viscousPyro', 'solidPyro',
         'kernite', 'fieryKern', 'luminousKern',
@@ -11,34 +19,38 @@ $(document).ready(function(){
         'hedbergite'
     ];
 
-    var ores = {}
+            // Ships
+    function Ship(shipName, oreHold, miningRate) {
+        this.shipName = shipName
+        this.oreHold = oreHold;
+            // Mining rate currently undfined
+        this.miningRate = miningRate;
+    };
 
-        // Update ore value based on user submission
-    $('.js-ore-form').on('submit', function(e){
-        e.preventDefault();
-        var oreName = $('.js-ore-name').find(':selected').data().name;
-            // **TO DO: .val() should be a number ONLY **        
-        var oreVal = $('.js-ore-input').val();
-        var ore = ores[oreName] || {};
-        ore.estIsk = oreVal;
-        ore.displayName = oreName;
-        ores[oreName] = ore;
+    var venture = new Ship('Venture', 5000);
+    var covetor = new Ship('Covetor', 7000);
+    var retriever = new Ship('Retriever', 23100);
 
-             // Put eskIsk value and venture value into the list
-        if (this.oreName === this.oreNames){
-             $('#' + oreName).text(oreVal + ' | Venture Value: ' + oreHoldValue(ore.m3, oreVal, venture.oreHold));
-        };
+            // Calculate max hold value per ship type
+    function oreHoldValue(oreM3, estIsk, shipOreHold) {
+        if(estIsk) {
+            return (((1 / oreM3) * estIsk) * shipOreHold);
+        }
+    };
 
-        refreshOreList();
-    });
+            // Console ores
+        var refreshOreList = function(){
+        console.log(ores);
+    };
 
-        // Ore
+            // Ore
     function Ore(m3, security, displayName, estIsk) {
         this.m3 = m3;
         this.security = security;
         this.displayName = displayName;
         this.estIsk = estIsk;
     };
+
         // Assign default values to ore types
     for(var i = 0; i < oreNames.length; i++){
         
@@ -58,38 +70,25 @@ $(document).ready(function(){
         }
     };
 
-    var refreshOreList = function(){
-        console.log(ores);
-    };
+        // JQuery Submit function.
+        // Updates Ore Value (oreVal) based on user submission
+    $('.js-ore-form').on('submit', function(e){
+        e.preventDefault();
+        var oreName = $('.js-ore-name').find(':selected').data().name;
+            // **TO DO: .val() should be a number only**        
+        var oreVal = $('.js-ore-input').val();
+        var ore = ores[oreName] || {};
+        ore.estIsk = oreVal;
+        ore.displayName = oreName;
+        ores[oreName] = ore;
 
-        // Ships
-    function Ship(shipName, oreHold, miningRate) {
-        this.shipName = shipName
-        this.oreHold = oreHold;
-        this.miningRate = miningRate;
-    };
+             // Put eskIsk value and venture value into the list
+        if (this.oreName === this.oreNames){
+            $('#' + oreName).text(oreVal);
+             $('#' + oreName + ' .ventureValue').text(' Test');
+             //$('#' + oreName + '>.ventureValue').text('Venture Value: ' + oreHoldValue(ore.m3, oreVal, venture.oreHold));
+        };
 
-    var venture = new Ship('Venture', 5000, null);
-    var covetor = new Ship('Covetor', 7000, null);
-    var retriever = new Ship('Retriever', 23100, null);
-
-        // Calculate max hold value per ship type
-    function oreHoldValue(oreM3, estIsk, shipOreHold) {
-        if(estIsk) {
-            return (((1 / oreM3) * estIsk) * shipOreHold);
-        }
-    };
-
-        // Security
-    var nullSec = 'Null Security';
-    var lowSec = 'Low Security';
-    var highSec = 'High Security';
-    var anomoly = 'Anomoly';
-
-
-        // Ore loop to assign Ore values to the Ore Types array that
-        // can be referenced on the HTML page (data-name="")
-
-    refreshOreList();
-
+        refreshOreList();
+    });
 });
