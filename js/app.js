@@ -90,4 +90,11 @@ $(document).ready(function(){
 
         refreshOreList();
     });
+   
+    $('.raw_textInput').on('submit', function(e) {
+        e.preventDefault();
+        var oreLine1 = $('#raw_textArea').val();
+        console.log(oreLine1);
+    });
+
 });

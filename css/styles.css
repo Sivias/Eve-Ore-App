@@ -14,10 +14,17 @@
 }
 
 .oreValues {
+	display: inline-block;
     border-width: 20px;
     border-color: black;
     background: #406177;
     padding: 20px;
+}
+
+.raw_textInput {
+	display: inline-block;
+	border-width: 20px;
+	padding: 20px;
 }
 
 #goldBar {
