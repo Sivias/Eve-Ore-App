@@ -91,10 +91,10 @@ $(document).ready(function(){
         refreshOreList();
     });
    
-    $('.raw_textInput').on('submit', function(e) {
-        e.preventDefault();
-        var oreLine1 = $('#raw_textArea').val();
-        console.log(oreLine1);
-    });
-
+        // Raw Text Input to JSON
+    // $('.raw_textInput').on('submit', function(e) {
+    //     e.preventDefault();
+    //     var oreLine1 = $('#raw_textArea').val().split('\t').filter(function(str){return str !== '';})
+    //     console.log(oreLine1);
+    // });
 });
